@@ -74,7 +74,7 @@ checkArguments
 
 echo "\n### namespace: ${namespace}"
 echo "### env: ${env}"
-echo "### url: ${url}"
+echo "### url: ${url}\n"
 
 kubectl delete ns "${namespace}"
 
@@ -99,7 +99,7 @@ case $env in
   gke)
     echo "\n### targeting environment GKE"
     aioYaml="https://raw.githubusercontent.com/entando-k8s/entando-k8s-operator-bundle/v6.3.2/manifests/k8s-116-and-later/namespace-scoped-deployment/cluster-resources.yaml"
-    nsResources="${SCRIPT_DIR}/namespace-resources/gke-namespace-resources.yaml"
+    nsResources="${SCRIPT_DIR}/namespace-resources/gke-namespace-resources.yml"
     operatorConfigMap="${SCRIPT_DIR}/operator-config/gke-tls-entando-operator-config.yaml"
     ;;
 
@@ -115,26 +115,27 @@ cd "cert"
 ./generate-wildcard-certificate.sh "${url}"
 caCertSecretFile=$(composeCaCertSecret)
 tlsSecretFile=$(composeTlsSecrets)
-echo "\n### certificate generated"
+echo "### certificate generated\n"
+
 
 kubectl create ns "${namespace}"
 
 kubectl apply -f "${aioYaml}"
-echo "\n### clustered resources file applied"
+echo "### clustered resources file applied\n"
 
 kubectl apply -f "${nsResources}" -n "${namespace}"
-echo "\n### namespaced resources file applied"
+echo "### namespaced resources file applied\n"
 
 kubectl apply -f "${tlsSecretFile}" -n "${namespace}"
 kubectl apply -f "${caCertSecretFile}" -n "${namespace}"
-echo "\n### tls cert secrets applied"
+echo "### tls cert secrets applied\n"
 
 kubectl apply -f "${operatorConfigMap}" -n "${namespace}"
-echo "\n### operator config map applied"
+echo "### operator config map applied\n"
 
 cd "${HELM_QUICKSTART_PATH}"
 helm template --namespace "${namespace}" --name=quickstart ./ | kubectl apply -n "${namespace}" -f -
-echo "\n### helm template created and applied"
+echo "### helm template created and applied\n"
 
 
-echo "\n### deploying... check the status"
+echo "\n### deploying... check the status\n"

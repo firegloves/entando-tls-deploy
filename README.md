@@ -12,11 +12,16 @@ You need to set a system environment variable named `HELM_QUICKSTART_PATH` that 
 
 You need to set your kubernetes context to point to the desired cluster.
 
+If you want to set components images version, you can find them in `namespace-resources/*-namespace-resources.yml` files. 
+
 ## Instructions
 
 To run the script you need to call `tls-deploy.sh` passing these required arguments:
 
-- `-e` the target environment. Acceptable values are `kube` for vanilla Kubernetes, `oc` for RD, `gke` for Google Kubernetes
+- `-e` the target environment. Acceptable values are
+  - `kube` for vanilla Kubernetes (Kubernetes >= v1.16)
+  - `oc` for RD (Kubernetes < v1.16)
+  - `gke` for Google Kubernetes (Kubernetes >= v1.16)
 - `-n` the namespace where deploy the Entando instance
 - `-u` the domain where Entando will be available
 

@@ -38,7 +38,7 @@ data:
 # hostname, the hostnames for deployments will be calculated by prefixing the name and namespace of the resource to this
 # routing suffix.
 #
-  entando.default.routing.suffix: "fire.cluster-2.gke-ent.com"
+  entando.default.routing.suffix: "cluster-2.gke-ent.com"
 
 # if you want to inspect the Entando deployer pods even after deployment has completed successfully, you can turn of
 # the deployer pod garbage collection by setting the property 'entando.k8s.operator.gc.controller.pods' to "false"
@@ -49,5 +49,3 @@ data:
 # delete the Entando custom resources at will, you will need to  instruct the Entando operator to force a password
 # reset by setting the 'entando.k8s.operator.force.db.password.reset' property to "true"
   entando.requires.filesystem.group.override: "true"
-#
-#  entando.ingress.class: "nginx"
