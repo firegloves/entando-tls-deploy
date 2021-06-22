@@ -49,3 +49,4 @@ data:
 # delete the Entando custom resources at will, you will need to  instruct the Entando operator to force a password
 # reset by setting the 'entando.k8s.operator.force.db.password.reset' property to "true"
   entando.requires.filesystem.group.override: "true"
+  entando.ingress.class: "nginx"
