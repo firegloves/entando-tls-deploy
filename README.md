@@ -35,18 +35,12 @@ Examples:
 
 ### Step 2
 
-Create the app with this addition to the manifest file or simply add the `APPLICATIONBASEURL` environment variable.
+Add the `APPLICATIONBASEURL` environment variable to the server-deployment (you might have to scale down, inject the env var and scale up again).
 Replace the `{HOSTNAME}` placeholder with the desired value. 
 
 ```
-kind: EntandoCompositeApp
-spec:
-components:
-- kind: EntandoKeycloakServer
-  spec:
-  environmentVariables:
   - name: APPLICATIONBASEURL
-  value: https://{HOSTNAME}/entando-de-app/
+    value: https://{HOSTNAME}/entando-de-app/
 ```
 
 ### Step 3
